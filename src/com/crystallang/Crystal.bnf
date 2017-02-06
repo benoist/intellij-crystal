@@ -1,0 +1,31 @@
+{
+  parserClass="com.crystallang.parser.CrystalParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Crystal"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.crystallang.psi"
+  psiImplPackage="com.crystallang.psi.impl"
+
+  elementTypeHolderClass="com.crystallang.psi.CrystalTypes"
+  elementTypeClass="com.crystallang.psi.CrystalElementType"
+  tokenTypeClass="com.crystallang.psi.CrystalTokenType"
+
+  psiImplUtilClass="com.crystallang.psi.impl.CrystalPsiImplUtil"
+}
+
+crystalFile ::= item_*
+
+private item_ ::= (property|COMMENT|CLRF)
+
+
+property ::= (KEY SEPARATOR VALUE?)|KEY {
+    pin=3
+    recoverWhile="recover_property"
+    mixin="com.crystallang.psi.impl.CrystalNamedElementImpl"
+    implements="com.crystallang.psi.CrystalNamedElement"
+    methods=[getKey getValue getName setName getNameIdentifier getPresentation]
+}
+
+private recover_property ::= !(KEY|SEPARATOR|COMMENT)

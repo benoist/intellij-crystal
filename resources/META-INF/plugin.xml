@@ -1,0 +1,40 @@
+<idea-plugin version="2">
+  <id>com.crystallang</id>
+  <name>Crystal Lang</name>
+  <version>1.0</version>
+  <vendor email="benoist@web2000.nl" url="http://www.web2000.nl">Web2000</vendor>
+
+  <description><![CDATA[
+      Language support for Crystal Lang
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Work in progress
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="145.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <fileTypeFactory implementation="com.crystallang.CrystalFileTypeFactory"/>
+    <lang.parserDefinition language="Crystal" implementationClass="com.crystallang.CrystalParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="Crystal" implementationClass="com.crystallang.CrystalSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.crystallang.CrystalColorSettingsPage"/>
+    <completion.contributor language="Crystal" implementationClass="com.crystallang.CrystalCompletionContributor"/>
+    <psi.referenceContributor implementation="com.crystallang.CrystalReferenceContributor"/>
+    <lang.findUsagesProvider language="Crystal" implementationClass="com.crystallang.CrystalFindUsagesProvider"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
